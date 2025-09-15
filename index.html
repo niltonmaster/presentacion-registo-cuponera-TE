@@ -1,42 +1,317 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Prototipo Cuponera – Tesorería</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 40px; text-align: center; }
-    h1 { color: #004a7c; margin-bottom: 10px; }
-    p { color: #555; margin-bottom: 30px; }
-    .card {
-      background: white; border-radius: 12px; padding: 20px;
-      margin: 20px auto; width: 400px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-    .card h2 { margin-top: 0; color: #2c3e50; }
-    .card p { font-size: 0.9em; color: #666; }
-    a button {
-      display: block; width: 100%; padding: 10px; margin-top: 15px;
-      background: #1976d2; color: white; border: none; border-radius: 8px;
-      cursor: pointer; font-size: 1em;
-    }
-    a button:hover { background: #0d47a1; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipos Funcionales - Cuponera</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e3e8ed;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, #005C97 0%, #004a7c 100%);
+        }
+
+        .header h1 {
+            color: #005C97;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e3e8ed;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .card-features li {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f5f8b 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Profile Badge */
+        .profile-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 92, 151, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 20px 10px;
+            }
+
+            .profile-badge {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 0 auto 20px;
+                display: block;
+                text-align: center;
+                width: fit-content;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Prototipo – Cuponera Tesorería</h1>
-  <p>Seleccione la pantalla que desea revisar:</p>
+    <!-- Profile Badge -->
+    <div class="profile-badge">
+        Perfil: TE (Tesorería)
+    </div>
 
-  <div class="card">
-    <h2>Búsqueda de Cupones</h2>
-    <p>Pantalla para filtrar y listar cupones. Desde aquí se accede a la cancelación masiva o individual.</p>
-    <a href="busqueda-cupones.html"><button>Abrir Búsqueda</button></a>
-  </div>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Presentación - Cuponera</h1>
+            <!-- <p>Seleccione el prototipo que desea revisar</p> -->
+        </div>
 
-  <div class="card">
-    <h2>Cancelación de Pago del Cupón</h2>
-    <p>Simulación de las opciones de cancelación: regular, parcial, anticipada y en moneda distinta.</p>
-    <a href="tipos-cancelacion.html"><button>Abrir Cancelación</button></a>
-  </div>
+        <!-- Cards Grid -->
+        <div class="cards-grid">
+            <!-- Card 1: Búsqueda de Cupones -->
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h2>Búsqueda de Cupones</h2>
+                <!-- <p>Prototipo de búsqueda de y cancelacion masiva.</p> -->
+
+
+                <p>
+
+                    Prototipo de interfaz para búsqueda y filtrado de cupones. Tambien incluye ventana de de cancelación
+                    masiva.
+                </p>
+
+
+
+                <ul class="card-features">
+                    <!-- <li>Filtros avanzados por ISIN, inversión y tipo de instrumento</li>
+                    <li>Visualización detallada de todos los parámetros del cupón</li>
+                    <li>Funcionalidad de cancelación masiva</li>
+                    <li>Exportación y gestión de registros</li> -->
+
+
+                </ul>
+
+                <a href="busqueda-cupones.html" class="btn">Abrir Búsqueda de Cupones</a>
+            </div>
+
+            <!-- Card 2: Cancelación de Cupones -->
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <h2>Cancelación de Pago del Cupón</h2>
+                <!-- <p>Prototipo interactivo de cancelación de pagos de cupones.</p> -->
+
+                <p>
+                    Prototipo de los diferentes tipos de cancelación de cupones: regular, parcial, anticipada y en
+                    moneda distinta.
+                </p>
+
+
+                <!-- <ul class="card-features">
+                    <li>Cancelación regular con validación de montos</li>
+                    <li>Pagos parciales con seguimiento automático</li>
+                    <li>Cancelación anticipada con cálculos especiales</li>
+                    <li>Conversión de moneda con tipos de cambio</li>
+                </ul> -->
+
+                <a href="tipos-cancelacion.html" class="btn">Abrir Cancelación de Cupones</a>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
