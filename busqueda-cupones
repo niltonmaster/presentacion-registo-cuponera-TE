@@ -1168,7 +1168,8 @@
                 // window.location.href = `tipos-cancelacion.html?inv=${invNum}`;
             }, 1500);
 
-                        <button class="btn btn-info" onclick="verDetalleCupon('${item.invNum}')">
+                         window.location.href = "tipos-cancelacion.html?invNum=" + invNum;
+
 
         }
 
