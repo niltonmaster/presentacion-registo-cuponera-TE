@@ -1167,6 +1167,9 @@
                 console.log(`Navegando a la pantalla de cancelar el cupón INV# ${invNum}`);
                 // window.location.href = `tipos-cancelacion.html?inv=${invNum}`;
             }, 1500);
+
+                        <button class="btn btn-info" onclick="verDetalleCupon('${item.invNum}')">
+
         }
 
         // Función para seleccionar/deseleccionar todos
